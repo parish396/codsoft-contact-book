@@ -1,0 +1,188 @@
+/* style.css */
+
+/* Basic body styling */
+body {
+    font-family: 'Inter', sans-serif; /* Using Inter font, fallback to sans-serif */
+    background-color: #f3f4f6; /* Light gray background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 1rem; /* Add some padding for smaller screens */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+/* Main container styling */
+.contact-book-container {
+    background-color: #ffffff; /* White background */
+    padding: 2rem; /* Ample padding */
+    border-radius: 0.75rem; /* Rounded corners */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    width: 100%; /* Full width on smaller screens */
+}
+
+/* Section headings */
+h1, h2 {
+    color: #1f2937; /* Dark gray color */
+}
+
+/* Form input styling (overriding some Tailwind defaults for consistency) */
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+    border: 1px solid #d1d5db; /* Light gray border */
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem; /* Rounded corners */
+    transition: all 0.2s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus {
+    border-color: #3b82f6; /* Blue border on focus */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Blue ring on focus */
+}
+
+/* Button general styling */
+button {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+    width: 100%;
+}
+
+th, td {
+    padding: 0.75rem 1rem; /* Padding for table cells */
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb; /* Light border between rows */
+}
+
+thead th {
+    background-color: #e0f2f7; /* Light blue background for table header */
+    color: #4b5563; /* Darker text for header */
+    font-weight: 600; /* Semi-bold */
+}
+
+tbody tr:hover {
+    background-color: #f9fafb; /* Subtle hover effect on table rows */
+}
+
+/* Action buttons in table */
+.action-buttons button {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem; /* Smaller font for action buttons */
+    margin-right: 0.5rem; /* Space between buttons */
+}
+
+.action-buttons button:last-child {
+    margin-right: 0; /* No margin on the last button */
+}
+
+/* Modal styling */
+.modal {
+    z-index: 1000; /* Ensure modal is on top */
+}
+
+.modal-content {
+    animation: fadeInScale 0.3s ease-out forwards; /* Animation for modal entry */
+}
+
+/* Animation for modal */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Utility class for hiding elements */
+.hidden {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-book-container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    /* Adjust table display for smaller screens */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        margin-bottom: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 1rem;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #4b5563;
+    }
+
+    /* Hide email and address columns on small screens */
+    td[data-label="Email"],
+    td[data-label="Address"] {
+        display: none;
+    }
+
+    /* Show them on medium screens */
+    @media (min-width: 768px) {
+        td[data-label="Email"] {
+            display: table-cell;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        td[data-label="Address"] {
+            display: table-cell;
+        }
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-end;
+        padding-top: 0.5rem;
+    }
+}
